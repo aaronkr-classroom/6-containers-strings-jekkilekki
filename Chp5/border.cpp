@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 
+#include "split.h"
+
 using namespace std;
 
 string::size_type width(const vector<string>& v) {
@@ -96,6 +98,7 @@ vector<string> hcat(const vector<string>& left,
  * 4. out.txt 파일에서 모든 출력 저장해 주세요.
  */
 
+/*
 int main() {
 	string s;
 
@@ -106,3 +109,4 @@ int main() {
 
 	return 0;
 }
+*/
