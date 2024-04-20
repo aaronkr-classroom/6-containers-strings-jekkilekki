@@ -35,7 +35,7 @@ istream& read_hw(istream& in, vector<double>& hw) {
     }
 }
 
-void write_analysis(ostream out, const string& name,
+void write_analysis(ostream& out, const string& name,
     double analysis(const vector<Student_info>&),
     const vector<Student_info>& did,
     const vector<Student_info>& didnt) {

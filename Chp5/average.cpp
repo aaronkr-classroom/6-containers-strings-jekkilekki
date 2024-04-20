@@ -1,4 +1,5 @@
-#include <algorithm> // accumulate?
+#include <algorithm> 
+#include <numeric> // accumulate
 #include <vector>
 #include "grade.h"
 #include "median.h"

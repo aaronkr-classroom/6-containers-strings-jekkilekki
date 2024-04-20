@@ -20,7 +20,7 @@ bool compare(const Student_info&, const Student_info&);
 istream& read(istream&, Student_info&);
 istream& read_hw(istream&, vector<double>&);
 
-void write_analysis(ostream, const string&,
+void write_analysis(ostream&, const string&,
     double analysis(const vector<Student_info>&),
     const vector<Student_info>&,
     const vector<Student_info>&);

@@ -9,5 +9,6 @@
 double median(vector<double>);
 double median_analysis(const vector<Student_info>&);
 double optimistic_median(const vector<Student_info>&);
+double optimistic_median_analysis(const vector<Student_info>&);
 
 #endif

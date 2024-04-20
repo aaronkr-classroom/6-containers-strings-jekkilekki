@@ -32,14 +32,14 @@ double median(vector<double> vec) {
 // 이 함수는 제대로 동작하지 않음:
 double median_analysis(const vector<Student_info>& students) {
     vector<double> grades;
-    transform(students.begin(), students.end(), back_inserter(grades), grade);
+    transform(students.begin(), students.end(), back_inserter(grades), grade_aux);
 
     return median(grades);
 }
 
 // s.homework 벡터에서 0이 아닌 요소들의 중앙값을 구합니다.
 // 0이 아닌 요소가 없다면 종합 과제 점수를 0점으로 처리
-double optimistic_median(const vector<Student_info>& s) {
+double optimistic_median(const Student_info& s) {
     vector<double> nonzero;
     remove_copy(s.homework.begin(), s.homework.end(), back_inserter(nonzero), 0);
 
@@ -47,4 +47,13 @@ double optimistic_median(const vector<Student_info>& s) {
         return grade(s.midterm, s.final, 0);
     else
         return grade(s.midterm, s.final, median(nonzero));
+}
+
+double optimistic_median_analysis(const vector<Student_info>& students) {
+    vector<double> grades;
+
+    transform(students.begin(), students.end(),
+        back_inserter(grades), optimistic_median);
+
+    return median(grades);
 }
