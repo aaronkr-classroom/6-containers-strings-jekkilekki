@@ -1,14 +1,24 @@
 // grade.cpp
-#include "grade.h"
-#include "median.h"
-#include "Student_info.h"
+#include <algorithm>
 #include <list>
 #include <vector>
 #include <stdexcept>
 
+#include "grade.h"
+#include "median.h"
+#include "Student_info.h"
+
+bool did_all_hw(const Student_info& s) {
+    return ((find(s.homework.begin(), s.homework.end(), 0)) == s.homework.end());
+}
+
 // 학생의 과락 여부를 결정하는 서술 함수
 bool fgrade(const Student_info& s) {
     return grade(s) < 60;
+}
+
+bool pgrade(const Student_info& s) {
+    return !fgrade(s);
 }
 
 // 중간시험 점수, 기말시험 점수, 종합 과제 점수에서
@@ -31,6 +41,15 @@ double grade(const Student_info& s) {
     return grade(s.midterm, s.final, s.homework);
 }
 
+double grade_aux(const Student_info& s) {
+    try {
+        return grade(s);
+    }
+    catch (domain_error) {
+        return grade(s.midterm, s.final, 0);
+    }
+}
+
 // 세 번째 버젼:
 // 인덱스 대신 반복자를 사용하지만 여전히
 // 성증 저하가 우려됨
@@ -47,6 +66,15 @@ list<Student_info> extract_fails(list<Student_info>& students) {
             ++iter;
         }
     }
+    return fail;
+}
 
+// 6장 extract_fails
+vector<Student_info> extract_fails(vector<Student_info>& students) {
+    vector<Student_info>::iterator iter =
+        stable_partition(students.begin(), students.end(), pgrade);
+    vector<Student_info> fail(iter, students.end());
+    
+    students.erase(iter, students.end());
     return fail;
 }
